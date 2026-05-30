@@ -12,8 +12,10 @@
   box-shadow: 0px 4px 26px rgba(0, 60, 89, 0.08),
               inset 0px -8px 20px rgba(255, 255, 255, 0.40);
   margin: 43px auto 0;
-  position: sticky;
-  top: 16px;
+  position: fixed;
+ top: 16px;
+left: 50%;
+transform: translateX(-50%);
   z-index: 100;
   transition: background 0.25s;
 }
