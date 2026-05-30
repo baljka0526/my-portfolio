@@ -1,3 +1,6 @@
+/* =========================
+   CURSOR
+========================= */
 a, button, input, textarea, select {
   cursor: none !important;
 }
@@ -34,38 +37,52 @@ a, button, input, textarea, select {
   color: black;
 }
 
-/* normal hover */
 .custom-cursor.cursor--hover {
   width: 32px;
   height: 32px;
 }
 
-/* work hover */
 .custom-cursor.cursor--work {
   width: 110px;
   height: 42px;
-  border-radius: 12px; /* pill shape */
-  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.60);
-  white-space: nowrap; transition: opacity 0.15s, transform 0.15s;
+  border-radius: 12px;
+  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.6);
+
   background: #FF9B37;
   color: white;
 
   mix-blend-mode: normal;
   font-size: 14px;
+  white-space: nowrap;
 }
 
+/* disable cursor on touch */
+@media (hover: none) {
+  .custom-cursor {
+    display: none;
+  }
 
-/* TITLE */
+  a, button, input, textarea, select {
+    cursor: auto !important;
+  }
+}
+
+/* =========================
+   TITLE
+========================= */
 .lr__title {
   font-weight: 700;
-  font-size: 122px;
+  font-size: clamp(42px, 8vw, 122px);
   text-align: center;
-  padding-top: 262px;
+
+  padding-top: clamp(80px, 18vh, 262px);
+  padding-left: 16px;
+  padding-right: 16px;
+
   letter-spacing: -2px;
   perspective: 800px;
 }
 
-/* Wrapper per letter — clips the reveal */
 .lr__title-letter {
   display: inline-block;
   overflow: hidden;
@@ -73,33 +90,40 @@ a, button, input, textarea, select {
   line-height: 1.1;
 }
 
-/* The inner span slides up from below the clip */
 .lr__title-letter span {
   display: inline-block;
   transform: translateY(110%) rotateX(400deg);
+  transform-origin: bottom center;
   animation: maskReveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-   transform-origin: bottom center;
 }
 
 @keyframes maskReveal {
-  from { transform: translateY(110%) rotateX(400deg); }
-  to   { transform: translateY(0) rotateX(0deg); }
+  from {
+    transform: translateY(110%) rotateX(400deg);
+  }
+  to {
+    transform: translateY(0) rotateX(0deg);
+  }
 }
 
+/* =========================
+   HERO
+========================= */
 .lr__hero-section {
-  height: 220vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  padding: 0 16px;
 }
 
 .lr__hero-img {
   position: sticky;
-  top: 0;
+  top: 60px;
 
-  width: 1080px;
-  height: 849px;
+  width: min(1080px, 100%);
+  aspect-ratio: 1080 / 849;
 
-  margin-top: 151px;
+  margin-top: 80px;
 
   border-radius: 24px;
   overflow: hidden;
@@ -107,7 +131,7 @@ a, button, input, textarea, select {
   transform: scale(0.82);
 
   will-change: transform, width, height, border-radius;
-    animation: fadeUp 0.6s ease both 0.05s;
+  animation: fadeUp 0.6s ease both 0.05s;
 }
 
 .lr__hero-img img {
@@ -115,19 +139,70 @@ a, button, input, textarea, select {
   height: 100%;
   object-fit: cover;
 }
-.lr__desc { display: flex; align-items: flex-start; gap: 100px; padding: 120px 180px 80px; } /* Left: "Built to / Last." — 72px Bold + Playfair Italic */ .lr__desc-left { flex-shrink: 0; } .lr__headline { font-size: 72px; line-height: 80px; font-weight: 700; color: #000; } .hl-sans { font-family: 'DM Sans', sans-serif; font-weight: 700; font-style: normal; } .hl-serif { font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; } /* Right: body copy — 28px, lineHeight 36px, weight 300, color rgba(0,0,0,0.7) */ .lr__desc-right { max-width: 713px; padding-top: 6px; } .lr__desc-right p { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 28px; line-height: 36px; color: rgba(0, 0, 0, 0.70); } .lr__desc-right p strong { font-weight: 500; color: rgba(0, 0, 0, 0.70); }
 
-/* GRID */
+/* =========================
+   DESCRIPTION
+========================= */
+.lr__desc {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 6vw, 100px);
+
+  padding: clamp(60px, 10vw, 120px) clamp(20px, 10vw, 180px);
+}
+
+.lr__desc-left {
+  flex-shrink: 0;
+}
+
+.lr__headline {
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1.1;
+  font-weight: 700;
+  color: #000;
+}
+
+.hl-sans {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+}
+
+.hl-serif {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.lr__desc-right {
+  max-width: 713px;
+}
+
+.lr__desc-right p {
+  font-size: clamp(16px, 2vw, 28px);
+  line-height: clamp(24px, 3vw, 36px);
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.lr__desc-right p strong {
+  font-weight: 500;
+}
+
+/* =========================
+   GRID
+========================= */
 .lr__grid {
-  margin: 80px 180px 160px;
+  margin: clamp(40px, 8vw, 80px) clamp(20px, 10vw, 180px) 160px;
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 
 .lr__grid-item {
   overflow: hidden;
   border-radius: 12px;
+  aspect-ratio: 4 / 3;
 }
 
 .lr__grid-item img {
@@ -136,24 +211,60 @@ a, button, input, textarea, select {
   object-fit: cover;
 }
 
+/* layouts (no fixed height anymore) */
 .lr__grid-item--full-top {
   grid-column: 1 / -1;
-  height: 800px;
+  aspect-ratio: 16 / 9;
 }
 
-.lr__grid-item--right {
-    grid-column: 2 / -1;
-  height: 400px;
-}
-
+.lr__grid-item--right,
 .lr__grid-item--right-bottom {
-  grid-column: 2/ -1;
-  height: 400px;
+  grid-column: 2 / -1;
 }
 
 .lr__grid-item--left-tall {
   grid-column: 1 / 2;
-   grid-row: 2 / 4;
-  height: 824px;
+  grid-row: 2/4;
+  aspect-ratio: auto;
+}
 
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .lr__desc {
+    flex-direction: column;
+    gap: 24px;
+    padding: 60px 20px;
+  }
+
+  .lr__headline {
+    font-size: 42px;
+    line-height: 48px;
+  }
+
+  .lr__desc-right p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .lr__grid {
+    grid-template-columns: 1fr;
+    margin: 40px 20px 120px;
+  }
+
+  .lr__grid-item {
+    grid-column: 1 / -1 !important;
+    aspect-ratio: 16 / 10;
+  }
+
+  .lr__hero-section {
+    height: auto;
+    padding-bottom: 80px;
+  }
+
+  .lr__hero-img {
+    transform: scale(1);
+  }
 }

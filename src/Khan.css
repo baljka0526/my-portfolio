@@ -1,3 +1,6 @@
+/* =========================
+   CURSOR
+========================= */
 a, button, input, textarea, select {
   cursor: none !important;
 }
@@ -34,19 +37,19 @@ a, button, input, textarea, select {
   color: black;
 }
 
-/* normal hover */
 .custom-cursor.cursor--hover {
   width: 32px;
   height: 32px;
 }
 
-/* work hover */
 .custom-cursor.cursor--work {
   width: 110px;
   height: 42px;
-  border-radius: 12px; /* pill shape */
-  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.60);
-  white-space: nowrap; transition: opacity 0.15s, transform 0.15s;
+  border-radius: 12px;
+
+  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.6);
+
+  white-space: nowrap;
   background: #FF9B37;
   color: white;
 
@@ -54,18 +57,33 @@ a, button, input, textarea, select {
   font-size: 14px;
 }
 
+/* disable cursor on touch */
+@media (hover: none) {
+  .custom-cursor {
+    display: none;
+  }
 
-/* TITLE */
+  a, button, input, textarea, select {
+    cursor: auto !important;
+  }
+}
+
+/* =========================
+   TITLE
+========================= */
 .khan__title {
   font-weight: 700;
-  font-size: 122px;
+  font-size: clamp(42px, 8vw, 122px);
   text-align: center;
-  padding-top: 262px;
+
+  padding-top: clamp(80px, 18vh, 262px);
+  padding-left: 16px;
+  padding-right: 16px;
+
   letter-spacing: -2px;
   perspective: 800px;
 }
 
-/* Wrapper per letter — clips the reveal */
 .khan__title-letter {
   display: inline-block;
   overflow: hidden;
@@ -73,33 +91,40 @@ a, button, input, textarea, select {
   line-height: 1.1;
 }
 
-/* The inner span slides up from below the clip */
 .khan__title-letter span {
   display: inline-block;
   transform: translateY(110%) rotateX(400deg);
+  transform-origin: bottom center;
   animation: maskReveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-   transform-origin: bottom center;
 }
 
 @keyframes maskReveal {
-  from { transform: translateY(110%) rotateX(400deg); }
-  to   { transform: translateY(0) rotateX(0deg); }
+  from {
+    transform: translateY(110%) rotateX(400deg);
+  }
+  to {
+    transform: translateY(0) rotateX(0deg);
+  }
 }
 
+/* =========================
+   HERO
+========================= */
 .khan__hero-section {
-  height: 220vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  padding: 0 16px;
 }
 
 .khan__hero-img {
   position: sticky;
-  top: 0;
+  top: 60px;
 
-  width: 1080px;
-  height: 849px;
+  width: min(1080px, 100%);
+  aspect-ratio: 1080 / 849;
 
-  margin-top: 151px;
+  margin-top: 80px;
 
   border-radius: 24px;
   overflow: hidden;
@@ -107,7 +132,7 @@ a, button, input, textarea, select {
   transform: scale(0.82);
 
   will-change: transform, width, height, border-radius;
-    animation: fadeUp 0.6s ease both 0.05s;
+  animation: fadeUp 0.6s ease both 0.05s;
 }
 
 .khan__hero-img img {
@@ -115,20 +140,72 @@ a, button, input, textarea, select {
   height: 100%;
   object-fit: cover;
 }
-.khan__desc { display: flex; align-items: flex-start; gap: 100px; padding: 120px 180px 80px; } /* Left: "Built to / Last." — 72px Bold + Playfair Italic */ .khan__desc-left { flex-shrink: 0; } .khan__headline { font-size: 72px; line-height: 80px; font-weight: 700; color: #000; } .hl-sans { font-family: 'DM Sans', sans-serif; font-weight: 700; font-style: normal; } .hl-serif { font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; } /* Right: body copy — 28px, lineHeight 36px, weight 300, color rgba(0,0,0,0.7) */ .khan__desc-right { max-width: 713px; padding-top: 6px; } .khan__desc-right p { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 28px; line-height: 36px; color: rgba(0, 0, 0, 0.70); } .khan__desc-right p strong { font-weight: 500; color: rgba(0, 0, 0, 0.70); }
 
-/* GRID */
+/* =========================
+   DESCRIPTION
+========================= */
+.khan__desc {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 6vw, 100px);
+
+  padding: clamp(60px, 10vw, 120px) clamp(20px, 10vw, 180px);
+}
+
+.khan__desc-left {
+  flex-shrink: 0;
+}
+
+.khan__headline {
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1.1;
+  font-weight: 700;
+  color: #000;
+}
+
+.hl-sans {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+}
+
+.hl-serif {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.khan__desc-right {
+  max-width: 713px;
+}
+
+.khan__desc-right p {
+  font-size: clamp(16px, 2vw, 28px);
+  line-height: clamp(24px, 3vw, 36px);
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.khan__desc-right p strong {
+  font-weight: 500;
+}
+
+/* =========================
+   GRID
+========================= */
 .khan__grid {
-  margin: 80px 180px 160px;
+  margin: clamp(40px, 8vw, 80px) clamp(20px, 10vw, 180px) 160px;
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+
   overflow: hidden;
 }
 
 .khan__grid-item {
   overflow: hidden;
   border-radius: 12px;
+  aspect-ratio: 4 / 3;
 }
 
 .khan__grid-item img {
@@ -137,29 +214,69 @@ a, button, input, textarea, select {
   object-fit: cover;
 }
 
-.khan__grid-item--top-left {
-  grid-column: 1 / 2;
-  height: 346px;
-}
-
+/* layouts */
+.khan__grid-item--top-left,
 .khan__grid-item--top-right {
-    grid-column: 2 / -1;
-  height: 345px;
+  aspect-ratio: 16 / 9;
 }
 
 .khan__grid-item--full-middle {
   grid-column: 1 / -1;
-  height: 699px;
+  aspect-ratio: 16 / 9;
 }
 
 .khan__grid-item--full-bottom {
   grid-column: 1 / -1;
-    height: 718px;
-    overflow: visible;
+  aspect-ratio: 16 / 9;
+  height: 115%;
+  overflow: hidden;
+}
+
+/* special image adjustment preserved */
+.khan__grid-item--full-bottom img {
+  object-position: left center;
+  transform: translateY(-5%);
+
 
 }
 
-.khan__grid-item--full-bottom img {
-    margin-top: -60px;
-  object-position: left center;
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .khan__desc {
+    flex-direction: column;
+    gap: 24px;
+    padding: 60px 20px;
+  }
+
+  .khan__headline {
+    font-size: 42px;
+    line-height: 48px;
+  }
+
+  .khan__desc-right p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .khan__grid {
+    grid-template-columns: 1fr;
+    margin: 40px 20px 120px;
+  }
+
+  .khan__grid-item {
+    grid-column: 1 / -1 !important;
+    aspect-ratio: 16 / 10;
+  }
+
+  .khan__hero-section {
+    height: auto;
+    padding-bottom: 80px;
+  }
+
+  .khan__hero-img {
+    transform: scale(1);
+  }
 }
