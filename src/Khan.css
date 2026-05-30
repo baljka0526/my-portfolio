@@ -1,0 +1,165 @@
+a, button, input, textarea, select {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  pointer-events: none;
+
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  mix-blend-mode: difference;
+
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 600;
+  color: black;
+}
+
+/* normal hover */
+.custom-cursor.cursor--hover {
+  width: 32px;
+  height: 32px;
+}
+
+/* work hover */
+.custom-cursor.cursor--work {
+  width: 110px;
+  height: 42px;
+  border-radius: 12px; /* pill shape */
+  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.60);
+  white-space: nowrap; transition: opacity 0.15s, transform 0.15s;
+  background: #FF9B37;
+  color: white;
+
+  mix-blend-mode: normal;
+  font-size: 14px;
+}
+
+
+/* TITLE */
+.khan__title {
+  font-weight: 700;
+  font-size: 122px;
+  text-align: center;
+  padding-top: 262px;
+  letter-spacing: -2px;
+  perspective: 800px;
+}
+
+/* Wrapper per letter — clips the reveal */
+.khan__title-letter {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.1;
+}
+
+/* The inner span slides up from below the clip */
+.khan__title-letter span {
+  display: inline-block;
+  transform: translateY(110%) rotateX(400deg);
+  animation: maskReveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+   transform-origin: bottom center;
+}
+
+@keyframes maskReveal {
+  from { transform: translateY(110%) rotateX(400deg); }
+  to   { transform: translateY(0) rotateX(0deg); }
+}
+
+.khan__hero-section {
+  height: 220vh;
+  display: flex;
+  justify-content: center;
+}
+
+.khan__hero-img {
+  position: sticky;
+  top: 0;
+
+  width: 1080px;
+  height: 849px;
+
+  margin-top: 151px;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  transform: scale(0.82);
+
+  will-change: transform, width, height, border-radius;
+    animation: fadeUp 0.6s ease both 0.05s;
+}
+
+.khan__hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.khan__desc { display: flex; align-items: flex-start; gap: 100px; padding: 120px 180px 80px; } /* Left: "Built to / Last." — 72px Bold + Playfair Italic */ .khan__desc-left { flex-shrink: 0; } .khan__headline { font-size: 72px; line-height: 80px; font-weight: 700; color: #000; } .hl-sans { font-family: 'DM Sans', sans-serif; font-weight: 700; font-style: normal; } .hl-serif { font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; } /* Right: body copy — 28px, lineHeight 36px, weight 300, color rgba(0,0,0,0.7) */ .khan__desc-right { max-width: 713px; padding-top: 6px; } .khan__desc-right p { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 28px; line-height: 36px; color: rgba(0, 0, 0, 0.70); } .khan__desc-right p strong { font-weight: 500; color: rgba(0, 0, 0, 0.70); }
+
+/* GRID */
+.khan__grid {
+  margin: 80px 180px 160px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.khan__grid-item {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.khan__grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.khan__grid-item--top-left {
+  grid-column: 1 / 2;
+  height: 346px;
+}
+
+.khan__grid-item--top-right {
+    grid-column: 2 / -1;
+  height: 345px;
+}
+
+.khan__grid-item--full-middle {
+  grid-column: 1 / -1;
+  height: 699px;
+}
+
+.khan__grid-item--full-bottom {
+  grid-column: 1 / -1;
+    height: 718px;
+    overflow: visible;
+
+}
+
+.khan__grid-item--full-bottom img {
+    margin-top: -60px;
+  object-position: left center;
+}

@@ -5,6 +5,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #EDF8FD;
+  cursor: none;
+}
+
+a, button, input, textarea, select {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  pointer-events: none;
+
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  mix-blend-mode: difference;
+
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 600;
+  color: black;
+}
+
+/* normal hover */
+.custom-cursor.cursor--hover {
+  width: 32px;
+  height: 32px;
+}
+
+/* work hover */
+.custom-cursor.cursor--work {
+  width: 110px;
+  height: 42px;
+  border-radius: 12px; /* pill shape */
+  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.60);
+  white-space: nowrap; transition: opacity 0.15s, transform 0.15s;
+  background: #FF9B37;
+  color: white;
+
+  mix-blend-mode: normal;
+  font-size: 14px;
 }
 
 code {

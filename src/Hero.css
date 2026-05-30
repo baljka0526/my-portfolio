@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,400;0,9..40,500;1,9..40,500&family=Playfair+Display:ital,wght@1,500&display=swap');
+
+:root {
+  --bg:           #EDF8FD;
+  --blue:         #0097DE;
+  --orange:       #FF9B37;
+  --purple:       #8437FF;
+  --white:        #FFFFFF;
+  --black:        #000000;
+  --px:           180px;
+  --nav-glass:    rgba(255,255,255,0.32);
+  --nav-shadow:   0px 4px 26px rgba(0,60,89,0.08), inset 0px -8px 20px rgba(255,255,255,0.40);
+  --badge-shadow: 0px 0px 30px rgba(0,120,179,0.15), inset -4px -4px 24px rgba(255,255,255,0.60);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; }
+
+.port {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+/* ════ NAVBAR ════ */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 12px 12px 32px;
+  width: 571px;
+  max-width: calc(100% - 48px);
+  background: var(--nav-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: var(--nav-shadow);
+  margin: 43px auto 0;
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  margin: 0;
+  z-index: 100;
+  transition: background 0.25s;
+}
+.nav--scrolled { background: rgba(255,255,255,0.80); }
+
+.nav__brand { display: flex; align-items: center; gap: 8px; }
+.nav__spinner { animation: spin 4s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.nav__name { font-weight: 500; font-size: 22px; line-height: 28px; color: var(--black); }
+
+.nav__links { display: flex; align-items: center; }
+.nav__link {
+  font-weight: 500; font-size: 16px; line-height: 20px;
+  color: var(--black); padding: 12px 20px; border-radius: 80px;
+  transition: background 0.15s;
+}
+.nav__link:hover { background: rgba(0,0,0,0.06); }
+
+.nav__cta {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 20px; background: var(--blue); border-radius: 16px;
+  font-weight: 500; font-size: 16px; color: var(--white);
+  box-shadow: inset -4px -4px 24px rgba(255,255,255,0.60);
+  white-space: nowrap; transition: opacity 0.15s, transform 0.15s;
+}
+.nav__cta:hover { opacity: 0.88; transform: translateY(-1px); }
+.nav__cta:active { transform: translateY(0); }
+
+/* ════ HERO TOP (text + badges side by side) ════ */
+.hero__top {
+  position: relative;
+  padding: 180px var(--px) 246px;
+  min-height: 300px;
+  z-index: 2;
+}
+
+.hero__text { padding-top: 52px; }
+
+.hero__greeting {
+  display: flex; align-items: center; gap: 13px;
+  animation: fadeUp 0.6s ease both 0.05s;
+}
+.hero__greeting-text { font-weight: 200; font-size: 38px; line-height: 40px; color: var(--black); }
+.hero__greeting-wave { font-size: 32px; line-height: 40px; }
+
+.hero__headline {
+  font-size: 72px; line-height: 80px; font-weight: 500;
+  color: var(--black); margin-top: 20px; max-width: 900px;
+  animation: fadeUp 0.6s ease both 0.13s;
+}
+.hl-sans  { font-family: 'DM Sans', sans-serif; font-weight: 500; font-style: normal; }
+.hl-serif { font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; }
+
+/* ════ BADGE STACK ════ */
+.badge-stack {
+  position: absolute;
+  right: var(--px);
+  /* aligns vertically so cards straddle the hero/about boundary */
+  bottom: -48px;
+  width: 240px;
+  height: 180px;
+  z-index: 20;
+  animation: fadeUp 0.6s ease both 0.05s;
+}
+
+.badge {
+  position: absolute;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--badge-shadow);
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+/* Purple — behind */
+.badge--purple {
+  background: var(--purple);
+  top: 140px; left: 10px;
+  z-index: 2;
+  width: fit-content;
+  padding: 24px 24px 64px 24px;
+}
+
+/* Orange — on top, slight counter-rotate */
+.badge--orange {
+  background: var(--orange);
+  top: 65px; left: 0;
+  z-index: 1;
+  transition-delay: 0s;
+  width: fit-content;
+  padding: 24px 24px 144px 24px;
+}
+
+/* Hover: fan out */
+.badge-stack:hover .badge--orange {
+  transform: rotate(-2deg) translate(0px, -55px);
+  box-shadow: 0 16px 48px rgba(255,155,55,0.35), inset -4px -4px 24px rgba(255,255,255,0.60);
+}
+.badge-stack:hover .badge--purple {
+  transform: rotate(2deg) translate(0px, -65px);
+  box-shadow: 0 16px 48px rgba(132,55,255,0.35), inset -4px -4px 24px rgba(255,255,255,0.60);
+  transition-delay: 0.04s;
+}
+
+.badge__label,
+.badge__action {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400; font-size: 16px; color: var(--white);
+}
+
+/* ════ ABOUT GRADIENT BLOCK ════ */
+.hero__about {
+  display: flex;
+  flex-direction: column;
+  gap: 78px;
+
+  padding: 114px var(--px) 100px;
+
+  background: radial-gradient(
+    120% 120% at 0% 100%,
+    rgba(230, 244, 251, 1) 0%,
+    rgba(148, 219, 255, 1) 12%,
+    rgba(32, 162, 228, 1) 26%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  position: relative; z-index: 2;
+  animation: fadeUp 0.6s ease both 0.20s;
+}
+.hero__bio { font-weight: 400; font-size: 32px; line-height: 36px; color: var(--white); max-width: 900px; }
+.hero__sub { font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; font-size: 56px; line-height: 60px; color: var(--white); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════ RESPONSIVE ════ */
+@media (max-width: 1100px) { :root { --px: 60px; } .hero__headline { font-size: 52px; line-height: 60px; } }
+@media (max-width: 768px)  { :root { --px: 24px; } .nav { width: calc(100% - 32px); } .hero__headline { font-size: 38px; line-height: 46px; } .hero__top { min-height: 260px; } .badge-stack { right: 16px; } .hero__bio { font-size: 22px; line-height: 30px; } .hero__sub { font-size: 36px; } }
+@media (max-width: 520px)  { .nav__links { display: none; } .hero__headline { font-size: 30px; line-height: 38px; } }
